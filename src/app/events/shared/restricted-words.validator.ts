@@ -1,8 +1,8 @@
 
-import { FormControl } from '@angular/forms';
+import { AbstractControl, ValidatorFn } from '@angular/forms';
 
-export function restrictedWords(words: any) {
-    return (control: FormControl): {[key: string]: any} | null => {
+export const restrictedWords = (words: any): ValidatorFn => {
+    return (control: AbstractControl): {[key: string]: any} | null => {
         if (!words) return null;
         var invalidWords = words
             .map((w: any) => control.value.includes(w) ? w : null)
@@ -12,3 +12,4 @@ export function restrictedWords(words: any) {
             : null;
     }
 }
+
